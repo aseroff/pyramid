@@ -28,10 +28,14 @@ def Init():
 	except:
 		settings = {
 			"liveOnly": False,
-			"responseThreeWide": "/me $user just finished a 3 $emote pyramid! Nice SeemsGood",
+			"responseThreeWide": "/me $user just finished a 3-wide $emote pyramid! Nice SeemsGood",
+                        "responseFourWide": "/me $user just finished a 4-wide $emote pyramid! Very nice LUL",
+                        "responseFiveWide": "/me $user just finished a 5-wide $emote pyramid! Wow MVGame",
+                        "responseSixWide": "/me $user just finished a 6-wide $emote pyramid! Incredible PogChamp",
+
 		}
 def Execute(data):
-	global msg, user, count, width
+	global msg, user, count, width, settings
 	if ((settings["liveOnly"] and Parent.IsLive()) or (not settings["liveOnly"])) and data.IsChatMessage():
 		if ((count == 0) and (data.GetParamCount() == 1)):
 			user = data.UserName
@@ -46,16 +50,23 @@ def Execute(data):
 				if count == 1:
 					if width == 3:
 						outputMessage = settings["responseThreeWide"]
-						outputMessage = outputMessage.replace("$user", user)
-						outputMessage = outputMessage.replace("$emote", msg)
-						Parent.SendStreamMessage(outputMessage)
+					elif width == 4:
+						outputMessage = settings["responseFourWide"]
+					elif width == 5:
+						outputMessage = settings["responseFiveWide"]
+					elif width == 6:
+						outputMessage = settings["responseSixWide"]
+					outputMessage = outputMessage.replace("$user", user)
+					outputMessage = outputMessage.replace("$emote", msg)
+					Parent.SendStreamMessage(outputMessage)
 		else:
 			count = 0
 			width = 0
 	return
 
 def ReloadSettings(jsonData):
-	Init()
+        ScriptSettings.__dict__ = json.loads(jsonData)
+        ScriptSettings.Save(SettingsFile)
 	return
 
 def OpenReadMe():
