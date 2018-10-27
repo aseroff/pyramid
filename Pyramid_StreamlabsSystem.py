@@ -1,12 +1,13 @@
 import os
 import sys
 import json
+import codecs
 
 ScriptName = "Emote Pyramid"
 Website = "https://github.com/aseroff/pyramid/"
 Description = "Congratulate users on completion of emote pyramids"
 Creator = "rvaen17"
-Version = "0.0.1"
+Version = "1.0.0"
 
 configFile = "config.json"
 settings = {}
@@ -19,7 +20,7 @@ def ScriptToggled(state):
 	return
 
 def Init():
-	global settings
+	global configFile, settings
 
 	path = os.path.dirname(__file__)
 	try:
@@ -65,8 +66,7 @@ def Execute(data):
 	return
 
 def ReloadSettings(jsonData):
-        ScriptSettings.__dict__ = json.loads(jsonData)
-        ScriptSettings.Save(SettingsFile)
+        Init()
 	return
 
 def OpenReadMe():
