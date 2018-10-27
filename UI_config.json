@@ -9,31 +9,115 @@
   },
   "responseThreeWide": {
     "type": "textbox",
-    "value": "/me $user just finished a 3-wide $emote pyramid! Nice SeemsGood",
+    "value": "/me $user just finished a 3-wide $emote pyramid! Pretty good TPFufun",
     "label": "Three Wide",
     "tooltip": "Message for completing a 3-wide emote pyramid.\r\n $user = Username\r\n $emote = emote of completed pyramid",
     "group": "Response Messages"
   },
   "responseFourWide": {
     "type": "textbox",
-    "value": "/me $user just finished a 4-wide $emote pyramid! Very nice LUL",
+    "value": "/me $user just finished a 4-wide $emote pyramid! Nice LUL",
     "label": "Four Wide",
     "tooltip": "Message for completing a 4-wide emote pyramid.\r\n $user = Username\r\n $emote = emote of completed pyramid",
     "group": "Response Messages"
   },
   "responseFiveWide": {
     "type": "textbox",
-    "value": "/me $user just finished a 5-wide $emote pyramid! Wow MVGame",
+    "value": "/me $user just finished a 5-wide $emote pyramid! Very nice MVGame",
     "label": "Five Wide",
     "tooltip": "Message for completing a 5-wide emote pyramid.\r\n $user = Username\r\n $emote = emote of completed pyramid",
     "group": "Response Messages"
   },
   "responseSixWide": {
     "type": "textbox",
-    "value": "/me $user just finished a 6-wide $emote pyramid! Incredible PogChamp",
+    "value": "/me $user just finished a 6-wide $emote pyramid! Wow PogChamp",
     "label": "Six Wide",
     "tooltip": "Message for completing a 6-wide emote pyramid.\r\n $user = Username\r\n $emote = emote of completed pyramid",
     "group": "Response Messages"
+  },
+  "responseSevenWide": {
+    "type": "textbox",
+    "value": "/me $user just finished a 7-wide $emote pyramid! Incredible KAPOW",
+    "label": "Seven Wide",
+    "tooltip": "Message for completing a 6-wide emote pyramid.\r\n $user = Username\r\n $emote = emote of completed pyramid",
+    "group": "Response Messages"
+  },
+  "responseEightWide": {
+    "type": "textbox",
+    "value": "/me $user just finished a 8-wide $emote pyramid! Crazy OhMyDog",
+    "label": "Eight Wide",
+    "tooltip": "Message for completing a 6-wide emote pyramid.\r\n $user = Username\r\n $emote = emote of completed pyramid",
+    "group": "Response Messages"
+  },
+  "responseNineWide": {
+    "type": "textbox",
+    "value": "/me $user just finished a 9-wide $emote pyramid! Insane SwiftRage",
+    "label": "Nine Wide",
+    "tooltip": "Message for completing a 6-wide emote pyramid.\r\n $user = Username\r\n $emote = emote of completed pyramid",
+    "group": "Response Messages"
+  },
+  "responseTenPlusWide": {
+    "type": "textbox",
+    "value": "/me $user just finished a 10+ $emote pyramid! Impossible Kreygasm",
+    "label": "Ten or More Wide",
+    "tooltip": "Message for completing a 10 or more-wide emote pyramid.\r\n $user = Username\r\n $emote = emote of completed pyramid",
+    "group": "Response Messages"
+  },
+  "rewardThreeWide": {
+    "type": "numberbox",
+    "value": 0,
+    "label": "Three Wide",
+    "tooltip": "Reward for completing a 3-wide emote pyramid.",
+    "group": "Rewards"
+  },
+  "rewardFourWide": {
+    "type": "numberbox",
+    "value": 0,
+    "label": "Four Wide",
+    "tooltip": "Reward for completing a 4-wide emote pyramid.",
+    "group": "Rewards"
+  },
+  "rewardFiveWide": {
+    "type": "numberbox",
+    "value": 5,
+    "label": "Five Wide",
+    "tooltip": "Reward for completing a 5-wide emote pyramid.",
+    "group": "Rewards"
+  },
+  "rewardSixWide": {
+    "type": "numberbox",
+    "value": 6,
+    "label": "Six Wide",
+    "tooltip": "Reward for completing a 6-wide emote pyramid.",
+    "group": "Rewards"
+  },
+  "rewardSevenWide": {
+    "type": "numberbox",
+    "value": 7,
+    "label": "Seven Wide",
+    "tooltip": "Reward for completing a 6-wide emote pyramid.",
+    "group": "Rewards"
+  },
+  "rewardEightWide": {
+    "type": "numberbox",
+    "value": 8,
+    "label": "Eight Wide",
+    "tooltip": "Reward for completing a 6-wide emote pyramid.",
+    "group": "Rewards"
+  },
+  "rewardNineWide": {
+    "type": "numberbox",
+    "value": 9,
+    "label": "Nine Wide",
+    "tooltip": "Reward for completing a 6-wide emote pyramid.",
+    "group": "Rewards"
+  },
+  "rewardTenPlusWide": {
+    "type": "numberbox",
+    "value": 10,
+    "label": "Ten or More Wide",
+    "tooltip": "Reward for completing a 10 or more-wide emote pyramid.",
+    "group": "Rewards"
   },
   "openReadMe": {
     "type": "button",
