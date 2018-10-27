@@ -4,7 +4,7 @@ import json
 
 ScriptName = "Emote Pyramid"
 Website = "https://github.com/aseroff/pyramid/"
-Description = "congratulation completion of emote pyramids for Streamlabs Bot"
+Description = "Congratulate users on completion of emote pyramids"
 Creator = "rvaen17"
 Version = "0.0.1"
 
@@ -32,8 +32,8 @@ def Init():
                         "responseFourWide": "/me $user just finished a 4-wide $emote pyramid! Very nice LUL",
                         "responseFiveWide": "/me $user just finished a 5-wide $emote pyramid! Wow MVGame",
                         "responseSixWide": "/me $user just finished a 6-wide $emote pyramid! Incredible PogChamp",
-
 		}
+		
 def Execute(data):
 	global msg, user, count, width, settings
 	if ((settings["liveOnly"] and Parent.IsLive()) or (not settings["liveOnly"])) and data.IsChatMessage():
