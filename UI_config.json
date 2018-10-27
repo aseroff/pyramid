@@ -9,28 +9,28 @@
   },
   "responseThreeWide": {
     "type": "textbox",
-    "value": "/me $user just finished a 3-$emote pyramid! Nice SeemsGood",
+    "value": "/me $user just finished a 3-wide $emote pyramid! Nice SeemsGood",
     "label": "Three Wide",
     "tooltip": "Message for completing a 3-wide emote pyramid.\r\n $user = Username\r\n $emote = emote of completed pyramid",
     "group": "Response Messages"
   },
   "responseFourWide": {
     "type": "textbox",
-    "value": "/me $user just finished a 4-$emote pyramid! Very nice LUL",
+    "value": "/me $user just finished a 4-wide $emote pyramid! Very nice LUL",
     "label": "Four Wide",
     "tooltip": "Message for completing a 4-wide emote pyramid.\r\n $user = Username\r\n $emote = emote of completed pyramid",
     "group": "Response Messages"
   },
   "responseFiveWide": {
     "type": "textbox",
-    "value": "/me $user just finished a 5-$emote pyramid! Wow MVGame",
+    "value": "/me $user just finished a 5-wide $emote pyramid! Wow MVGame",
     "label": "Five Wide",
     "tooltip": "Message for completing a 5-wide emote pyramid.\r\n $user = Username\r\n $emote = emote of completed pyramid",
     "group": "Response Messages"
   },
   "responseSixWide": {
     "type": "textbox",
-    "value": "/me $user just finished a 6-$emote pyramid! Incredible PogChamp",
+    "value": "/me $user just finished a 6-wide $emote pyramid! Incredible PogChamp",
     "label": "Six Wide",
     "tooltip": "Message for completing a 6-wide emote pyramid.\r\n $user = Username\r\n $emote = emote of completed pyramid",
     "group": "Response Messages"
