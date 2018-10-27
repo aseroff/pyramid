@@ -1,4 +1,4 @@
-# pyramid\n\n
+# pyramid
 
 SLOBS Chatbot script to congratulate users on completion of emote pyramids.
 
