@@ -43,7 +43,7 @@ def Execute(data):
 				max = i
 			elif (data.GetParamCount() is (i - 1)) and (data.getParam(0) == msg) and (len(list(set(data.Message.split(" ")))) == 1):
     				i -= 1
-				if i = 1:
+				if i == 1:
 					if max == 3:
 						outputMessage = settings["responseThreeWide"]
 						outputMessage.replace("$user", username)
