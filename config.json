@@ -1,0 +1,25 @@
+{
+  "output_file": "config.json",
+  "liveOnly": {
+    "type": "checkbox",
+    "value": true,
+    "label": "Live Only Mode",
+    "tooltip": "True if you want it to only run when you are live",
+    "group": "General"
+  },
+  "responseThreeWide": {
+    "type": "textbox",
+    "value": "/me $user just finished a 3-$emote pyramid! Nice SeemsGood",
+    "label": "Three Wide",
+    "tooltip": "Message for completing a 3-wide emote pyramid.\r\n $user = Username\r\n $emote = emote of completed pyramid",
+    "group": "Response Messages"
+  },
+  "openReadMe": {
+    "type": "button",
+    "label": "Open 'Readme Me' file",
+    "tooltip": "Opens the 'Readme.txt' for this script.",
+    "function": "OpenReadMe",
+    "wsevent": "",
+    "group": ""
+  }
+}
