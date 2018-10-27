@@ -26,12 +26,33 @@ def Init():
 			"liveOnly": True,
 			"responseThreeWide": "/me $user just finished a 3-$emote pyramid! Nice SeemsGood",
 		}
+	msg = ""
+	user = ""
+	i = 0
+	max = 0
 
 def Execute(data):
-  if ((settings["liveOnly"] and Parent.IsLive()) or (not settings["liveOnly"])):
-	  if data.IsChatMessage() and data.GetParam(0)
-    
-  return
+	if ((settings["liveOnly"] and Parent.IsLive()) or (not settings["liveOnly"])) and data.IsChatMessage():
+		if (i is 0) and (data.GetParamCount() is 1):
+			user = data.UserName
+			msg = data.getParam(0)
+			i += 1
+		elif (i > 0) and (data.UserName == user):
+			if (data.GetParamCount() is (i + 1)) and (data.getParam(0) == msg) and (len(list(set(data.Message.split(" ")))) == 1):
+				i += 1
+				max = i
+			elif (data.GetParamCount() is (i - 1)) and (data.getParam(0) == msg) and (len(list(set(data.Message.split(" ")))) == 1):
+    				i -= 1
+				if i = 1:
+					if max == 3:
+						outputMessage = settings["responseThreeWide"]
+						outputMessage.replace("$user", username)
+						outputMessage.replace("$emote", msg)
+						Parent.SendStreamMessage(outputMessage)
+		else:
+			i = 0
+			max = 0
+	return
 
 def ReloadSettings(jsonData):
 	Init()
