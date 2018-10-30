@@ -1,6 +1,6 @@
 # pyramid
 
-SLOBS Chatbot script to congratulate users on completion of emote pyramids.
+Streamlabs Chatbot script to congratulate users on completion of emote pyramids.
 
 Contribute to the script at https://github.com/aseroff/pyramid/
 
