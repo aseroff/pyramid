@@ -7,6 +7,27 @@
     "tooltip": "True if you want it to only run when you are live",
     "group": "General"
   },
+  "multiUser": {
+    "type": "checkbox",
+    "value": false,
+    "label": "Multiple Users Allowed",
+    "tooltip": "True if you want a pyramid to be able to be completed without all messages coming from the same user. Allows for steals (only the user who sends the last message gets the congratulations/reward).",
+    "group": "General"
+  },
+  "responseBlocked": {
+    "type": "textbox",
+    "value": "/me $user with the block! Kappa",
+    "label": "Pyramid Interrupted Message",
+    "tooltip": "Message for when a pyramid gets interrupted, once a pyramid has gotten 2 wide.",
+    "group": "Response Messages"
+  },
+  "responseChoked": {
+    "type": "textbox",
+    "value": "/me $user managed to mess up their own pyramid. NotLikeThis",
+    "label": "Pyramid Choked Message",
+    "tooltip": "Message for when a user messes up their own pyramid.",
+    "group": "Response Messages"
+  },
   "responseThreeWide": {
     "type": "textbox",
     "value": "/me $user just finished a 3-wide $emote pyramid! Pretty good TPFufun",
