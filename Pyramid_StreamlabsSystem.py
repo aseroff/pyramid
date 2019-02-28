@@ -7,7 +7,7 @@ ScriptName = "Emote Pyramid"
 Website = "https://github.com/aseroff/pyramid/"
 Description = "Congratulate users on completion of emote pyramids"
 Creator = "rvaen17"
-Version = "1.1.0"
+Version = "1.2.0"
 
 configFile = "config.json"
 settings = {}
@@ -30,22 +30,25 @@ def Init():
 	except:
 		settings = {
 			"liveOnly": False,
+			"multiUser": False,
+			"responseBlocked": "/me $user with the block! Kappa",
+			"responseChoked": "/me $user managed to mess up their own pyramid. NotLikeThis",
 			"responseThreeWide": "/me $user just finished a 3-wide $emote pyramid! Pretty good TPFufun",
-                        "responseFourWide": "/me $user just finished a 4-wide $emote pyramid! Nice LUL",
-                        "responseFiveWide": "/me $user just finished a 5-wide $emote pyramid! Very nice MVGame",
-                        "responseSixWide": "/me $user just finished a 6-wide $emote pyramid! Wow PogChamp",
-                        "responseSevenWide": "/me $user just finished a 7-wide $emote pyramid! Incredible KAPOW",
-                        "responseEightWide": "/me $user just finished a 8-wide $emote pyramid! Crazy OhMyDog",
-                        "responseNineWide": "/me $user just finished a 9-wide $emote pyramid! Insane SwiftRage",
-                        "responseTenPlusWide": "/me $user just finished a 10+ $emote pyramid! Impossible Kreygasm",
+			"responseFourWide": "/me $user just finished a 4-wide $emote pyramid! Nice LUL",
+			"responseFiveWide": "/me $user just finished a 5-wide $emote pyramid! Very nice MVGame",
+			"responseSixWide": "/me $user just finished a 6-wide $emote pyramid! Wow PogChamp",
+			"responseSevenWide": "/me $user just finished a 7-wide $emote pyramid! Incredible KAPOW",
+			"responseEightWide": "/me $user just finished a 8-wide $emote pyramid! Crazy OhMyDog",
+			"responseNineWide": "/me $user just finished a 9-wide $emote pyramid! Insane SwiftRage",
+			"responseTenPlusWide": "/me $user just finished a 10+ $emote pyramid! Impossible Kreygasm",
 			"rewardThreeWide": 0,
-                        "rewardFourWide": 0,
-                        "rewardFiveWide": 5,
-                        "rewardSixWide": 6,
-                        "rewardSevenWide": 7,
-                        "rewardEightWide": 8,
-                        "rewardNineWide": 9,
-                        "rewardTenPlusWide": 10,
+			"rewardFourWide": 0,
+			"rewardFiveWide": 5,
+			"rewardSixWide": 6,
+			"rewardSevenWide": 7,
+			"rewardEightWide": 8,
+			"rewardNineWide": 9,
+			"rewardTenPlusWide": 10,
 		}
 		
 def Execute(data):
@@ -56,58 +59,68 @@ def Execute(data):
 			msg = data.Message
 			count += 1
 			desc = 0
-		elif (count > 0) and (data.UserName == user):
-			if (desc == 0) and (data.GetParamCount() == (count + 1)) and (data.Message.split(" ")[0] == msg) and (len(list(set(data.Message.split(" ")))) == 1):
-				count += 1
-				width = count
-			elif (data.GetParamCount() == (count - 1)) and (data.Message.split(" ")[0] == msg) and (len(list(set(data.Message.split(" ")))) == 1):
-    				count -= 1
-    				desc = 1
-				if count == 1:
-					if width == 3:
-						outputMessage = settings["responseThreeWide"]
-						reward = settings["rewardThreeWide"]
-					elif width == 4:
-						outputMessage = settings["responseFourWide"]
-						reward = settings["rewardFourWide"]
-					elif width == 5:
-						outputMessage = settings["responseFiveWide"]
-						reward = settings["rewardFiveWide"]
-					elif width == 6:
-						outputMessage = settings["responseSixWide"]
-						reward = settings["rewardSixWide"]
-					elif width == 7:
-						outputMessage = settings["responseSevenWide"]
-						reward = settings["rewardSevenWide"]
-					elif width == 8:
-						outputMessage = settings["responseEightWide"]
-						reward = settings["rewardEightWide"]
-					elif width == 9:
-						outputMessage = settings["responseNineWide"]
-						reward = settings["rewardNineWide"]
-					elif width > 9:
-						outputMessage = settings["responseTenPlusWide"]
-						reward = settings["rewardTenPlusWide"]
-					if width > 2:
-                                                outputMessage = outputMessage.replace("$user", user)
-                                                outputMessage = outputMessage.replace("$emote", msg)
-                                                Parent.SendStreamMessage(outputMessage)
-                                                Parent.AddPoints(data.User,data.UserName,reward)
-                                                count = 0
-                                        width = 0
+		elif (count > 0):
+			if ((data.UserName == user) or settings["multiUser"])
+				if (desc == 0) and (data.GetParamCount() == (count + 1)) and (data.Message.split(" ")[0] == msg) and (len(list(set(data.Message.split(" ")))) == 1):
+					count += 1
+					width = count
+				elif (data.GetParamCount() == (count - 1)) and (data.Message.split(" ")[0] == msg) and (len(list(set(data.Message.split(" ")))) == 1):
+					count -= 1
+					desc = 1
+					if count == 1:
+						if width == 3:
+							outputMessage = settings["responseThreeWide"]
+							reward = settings["rewardThreeWide"]
+						elif width == 4:
+							outputMessage = settings["responseFourWide"]
+							reward = settings["rewardFourWide"]
+						elif width == 5:
+							outputMessage = settings["responseFiveWide"]
+							reward = settings["rewardFiveWide"]
+						elif width == 6:
+							outputMessage = settings["responseSixWide"]
+							reward = settings["rewardSixWide"]
+						elif width == 7:
+							outputMessage = settings["responseSevenWide"]
+							reward = settings["rewardSevenWide"]
+						elif width == 8:
+							outputMessage = settings["responseEightWide"]
+							reward = settings["rewardEightWide"]
+						elif width == 9:
+							outputMessage = settings["responseNineWide"]
+							reward = settings["rewardNineWide"]
+						elif width > 9:
+							outputMessage = settings["responseTenPlusWide"]
+							reward = settings["rewardTenPlusWide"]
+						if width > 2:
+							outputMessage = outputMessage.replace("$user", user)
+							outputMessage = outputMessage.replace("$emote", msg)
+							Parent.SendStreamMessage(outputMessage)
+							Parent.AddPoints(data.User,data.UserName,reward)
+							count = 0
+						msg = ""
+						width = 0
+						desc = 0
+				else:
+					if (data.UserName == user):
+						Parent.SendStreamMessage(settings["responseChoked"].replace("$user", data.UserName))
+					else:
+						Parent.SendStreamMessage(settings["responseBlocked"].replace("$user", data.UserName))
+					msg = ""
+					count = 0
+					width = 0
 					desc = 0
-			elif (data.GetParamCount() == 1):
-                                msg = data.Message
-                                count = 1
-                                desc = 0
-                        else:
-                                count = 0
-                                width = 0
-                                desc = 0
+			elif (count > 1 or ((count == 1) and (desc == 1))):
+				Parent.SendStreamMessage(settings["responseBlocked"].replace("$user", data.UserName))
+				msg = ""
+				count = 0
+				width = 0
+				desc = 0
 		else:
+			msg = ""
 			count = 0
 			width = 0
-                        desc = 0
+			desc = 0
 	return
 
 def ReloadSettings(jsonData):
