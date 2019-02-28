@@ -60,7 +60,7 @@ def Execute(data):
 			count += 1
 			desc = 0
 		elif (count > 0):
-			if ((data.UserName == user) or settings["multiUser"])
+			if ((data.UserName == user) or settings["multiUser"]):
 				if (desc == 0) and (data.GetParamCount() == (count + 1)) and (data.Message.split(" ")[0] == msg) and (len(list(set(data.Message.split(" ")))) == 1):
 					count += 1
 					width = count
