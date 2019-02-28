@@ -93,7 +93,7 @@ def Execute(data):
 							outputMessage = settings["responseTenPlusWide"]
 							reward = settings["rewardTenPlusWide"]
 						if width > 2:
-							outputMessage = outputMessage.replace("$user", user)
+							outputMessage = outputMessage.replace("$user", data.UserName)
 							outputMessage = outputMessage.replace("$emote", msg)
 							Parent.SendStreamMessage(outputMessage)
 							Parent.AddPoints(data.User,data.UserName,reward)
