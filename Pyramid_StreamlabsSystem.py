@@ -133,7 +133,6 @@ def reset():
 	count = 0
 	width = 0
 	desc = 0
-	return
 
 def ReloadSettings(jsonData):
         Init()
