@@ -99,12 +99,13 @@ def Execute(data):
 							Parent.AddPoints(data.User,data.UserName,reward)
 						reset()
 				elif (count > 1):
+					reset()
 					if (data.UserName == user):
+						reset()
 						Parent.SendStreamMessage(settings["responseChoked"].replace("$user", data.UserName))
-						reset()
 					else:
-						Parent.SendStreamMessage(settings["responseBlocked"].replace("$user", data.UserName))			
 						reset()
+						Parent.SendStreamMessage(settings["responseBlocked"].replace("$user", data.UserName))			
 				else:
 					if (len(data.Message.strip().split(" ")) == 1):
 						user = data.UserName
