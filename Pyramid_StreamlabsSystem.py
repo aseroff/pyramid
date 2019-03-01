@@ -120,11 +120,17 @@ def Execute(data):
 				width = 0
 				desc = 0
 			else:
-				user = ""
-				msg = ""
-				count = 0
-				width = 0
-				desc = 0
+				if (len(data.Message.strip().split(" ")) == 1):
+					user = data.UserName
+					msg = data.Message.strip().split(" ")[0]
+					count = 1
+					desc = 0
+				else:
+					user = ""
+					msg = ""
+					count = 0
+					width = 0
+					desc = 0
 		else:
 			user = ""
 			msg = ""
