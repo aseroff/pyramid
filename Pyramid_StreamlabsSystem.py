@@ -112,6 +112,18 @@ def Execute(data):
 					count = 0
 					width = 0
 					desc = 0
+				else:
+					if (len(data.Message.strip().split(" ")) == 1):
+						user = data.UserName
+						msg = data.Message.strip().split(" ")[0]
+						count = 1
+						desc = 0
+					else:
+						user = ""
+						msg = ""
+						count = 0
+						width = 0
+						desc = 0
 			elif (count > 1):
 				Parent.SendStreamMessage(settings["responseBlocked"].replace("$user", data.UserName))
 				user = ""
