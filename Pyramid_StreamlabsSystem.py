@@ -54,6 +54,7 @@ def Init():
 def Execute(data):
 	global msg, user, count, width, desc, settings
 	if ((settings["liveOnly"] and Parent.IsLive()) or (not settings["liveOnly"])) and data.IsChatMessage():
+		void Log(string "pyramid", string count + " " + msg)
 		if ((count == 0) and (len(data.Message.strip().split(" ")) == 1)):
 			user = data.UserName
 			msg = data.Message.strip().split(" ")[0]
