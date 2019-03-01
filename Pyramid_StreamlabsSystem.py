@@ -119,6 +119,12 @@ def Execute(data):
 				count = 0
 				width = 0
 				desc = 0
+			else:
+				user = ""
+				msg = ""
+				count = 0
+				width = 0
+				desc = 0
 		else:
 			user = ""
 			msg = ""
