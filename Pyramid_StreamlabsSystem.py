@@ -101,9 +101,10 @@ def Execute(data):
 				elif (count > 1):
 					if (data.UserName == user):
 						Parent.SendStreamMessage(settings["responseChoked"].replace("$user", data.UserName))
+						reset()
 					else:
 						Parent.SendStreamMessage(settings["responseBlocked"].replace("$user", data.UserName))			
-					reset()
+						reset()
 				else:
 					if (len(data.Message.strip().split(" ")) == 1):
 						user = data.UserName
