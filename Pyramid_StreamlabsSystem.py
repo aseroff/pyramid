@@ -97,21 +97,13 @@ def Execute(data):
 							outputMessage = outputMessage.replace("$emote", msg)
 							Parent.SendStreamMessage(outputMessage)
 							Parent.AddPoints(data.User,data.UserName,reward)
-						user = ""
-						msg = ""
-						count = 0
-						width = 0
-						desc = 0
+						reset()
 				elif (count > 1):
 					if (data.UserName == user):
 						Parent.SendStreamMessage(settings["responseChoked"].replace("$user", data.UserName))
 					else:
-						Parent.SendStreamMessage(settings["responseBlocked"].replace("$user", data.UserName))
-					user = ""
-					msg = ""
-					count = 0
-					width = 0
-					desc = 0
+						Parent.SendStreamMessage(settings["responseBlocked"].replace("$user", data.UserName))			
+					reset()
 				else:
 					if (len(data.Message.strip().split(" ")) == 1):
 						user = data.UserName
@@ -119,18 +111,10 @@ def Execute(data):
 						count = 1
 						desc = 0
 					else:
-						user = ""
-						msg = ""
-						count = 0
-						width = 0
-						desc = 0
+						reset()
 			elif (count > 1):
 				Parent.SendStreamMessage(settings["responseBlocked"].replace("$user", data.UserName))
-				user = ""
-				msg = ""
-				count = 0
-				width = 0
-				desc = 0
+				reset()
 			else:
 				if (len(data.Message.strip().split(" ")) == 1):
 					user = data.UserName
@@ -138,18 +122,17 @@ def Execute(data):
 					count = 1
 					desc = 0
 				else:
-					user = ""
-					msg = ""
-					count = 0
-					width = 0
-					desc = 0
+					reset()
 		else:
-			user = ""
-			msg = ""
-			count = 0
-			width = 0
-			desc = 0
+			reset()
 	return
+def Reset():
+	user = ""
+	msg = ""
+	count = 0
+	width = 0
+	desc = 0
+	
 
 def ReloadSettings(jsonData):
         Init()
