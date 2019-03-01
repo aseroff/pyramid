@@ -51,8 +51,6 @@ def Init():
 			"rewardTenPlusWide": 10,
 		}
 		
-void Log(string scriptName, string message)
-
 def Execute(data):
 	global msg, user, count, width, desc, settings
 	if ((settings["liveOnly"] and Parent.IsLive()) or (not settings["liveOnly"])) and data.IsChatMessage():
