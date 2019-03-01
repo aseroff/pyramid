@@ -51,9 +51,12 @@ def Init():
 			"rewardTenPlusWide": 10,
 		}
 		
+void Log(string scriptName, string message)
+
 def Execute(data):
 	global msg, user, count, width, desc, settings
 	if ((settings["liveOnly"] and Parent.IsLive()) or (not settings["liveOnly"])) and data.IsChatMessage():
+		Parent.Log("pyramids",count)
 		void Log(string "pyramid", string count + " " + msg)
 		if ((count == 0) and (len(data.Message.strip().split(" ")) == 1)):
 			user = data.UserName
