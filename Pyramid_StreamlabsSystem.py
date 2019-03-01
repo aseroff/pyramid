@@ -54,17 +54,17 @@ def Init():
 def Execute(data):
 	global msg, user, count, width, desc, settings
 	if ((settings["liveOnly"] and Parent.IsLive()) or (not settings["liveOnly"])) and data.IsChatMessage():
-		if ((count == 0) and (data.GetParamCount() == 1)):
+		if ((count == 0) and (len(data.Message.strip().split(" ")) == 1)):
 			user = data.UserName
-			msg = data.Message
-			count += 1
+			msg = data.Message.strip().split(" ")[0]
+			count = 1
 			desc = 0
 		elif (count > 0):
 			if ((data.UserName == user) or settings["multiUser"]):
-				if (desc == 0) and (data.GetParamCount() == (count + 1)) and (data.Message.split(" ")[0] == msg) and (len(list(set(data.Message.split(" ")))) == 1):
+				if (desc == 0) and (len(data.Message.strip().split(" ")) == (count + 1)) and (data.Message.strip().split(" ")[0] == msg) and (len(list(set(data.Message.strip().split(" ")))) == 1):
 					count += 1
 					width = count
-				elif (data.GetParamCount() == (count - 1)) and (data.Message.split(" ")[0] == msg) and (len(list(set(data.Message.split(" ")))) == 1):
+				elif (len(data.Message.strip().split(" ")) == (count - 1)) and (data.Message.split(" ")[0] == msg) and (len(list(set(data.Message.split(" ")))) == 1):
 					count -= 1
 					desc = 1
 					if count == 1:
@@ -97,26 +97,30 @@ def Execute(data):
 							outputMessage = outputMessage.replace("$emote", msg)
 							Parent.SendStreamMessage(outputMessage)
 							Parent.AddPoints(data.User,data.UserName,reward)
-							count = 0
+						user = ""
 						msg = ""
+						count = 0
 						width = 0
 						desc = 0
-				elif (count > 1 or ((count == 1) and (desc == 1))):
+				elif (count > 1):
 					if (data.UserName == user):
 						Parent.SendStreamMessage(settings["responseChoked"].replace("$user", data.UserName))
 					else:
 						Parent.SendStreamMessage(settings["responseBlocked"].replace("$user", data.UserName))
+					user = ""
 					msg = ""
 					count = 0
 					width = 0
 					desc = 0
-			elif (count > 1 or ((count == 1) and (desc == 1))):
+			elif (count > 1):
 				Parent.SendStreamMessage(settings["responseBlocked"].replace("$user", data.UserName))
+				user = ""
 				msg = ""
 				count = 0
 				width = 0
 				desc = 0
 		else:
+			user = ""
 			msg = ""
 			count = 0
 			width = 0
