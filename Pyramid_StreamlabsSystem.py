@@ -52,7 +52,7 @@ def Init():
 		}
 
 def Execute(data):
-	global msg, user, count, width, desc, settings, reset
+	global msg, user, count, width, desc, settings, reset()
 	if ((settings["liveOnly"] and Parent.IsLive()) or (not settings["liveOnly"])) and data.IsChatMessage():
 		if ((count == 0) and (len(data.Message.strip().split(" ")) == 1)):
 			user = data.UserName
