@@ -101,7 +101,7 @@ def Execute(data):
 						msg = ""
 						width = 0
 						desc = 0
-				else:
+				elif (count > 1 or ((count == 1) and (desc == 1))):
 					if (data.UserName == user):
 						Parent.SendStreamMessage(settings["responseChoked"].replace("$user", data.UserName))
 					else:
