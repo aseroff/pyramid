@@ -72,7 +72,7 @@ def Execute(data):
                             Parent.SendStreamMessage(complete_message(MAXIMUM).replace("$user", USER).replace("$emote", MSG))
                             Parent.AddPoints(data.User, data.UserName, complete_reward(MAXIMUM))
                         reset()
-                else:
+                elif MAXIMUM >= 2:
                     if data.UserName == USER:
                         Parent.SendStreamMessage(SETTINGS["responseChoked"].replace("$user", data.UserName))
                     else:
