@@ -79,9 +79,9 @@ def Execute(data):
 
 
 def pyramid_destroyed(username):
-    global USER
+    global USER, SETTINGS, WIDTH, DESC
     if WIDTH >= 2 or DESC:
-        if (username == USER):
+        if username == USER:
             if SETTINGS["responseChoked"] != "":
                 Parent.SendStreamMessage(SETTINGS["responseChoked"].replace("$user", username))
         else:
@@ -108,11 +108,7 @@ def process(message, username):
         if split[0] == MSG:
             COUNT = len(split)
         elif len(split) == 1:
-            MSG = split[0]
-            USER = username
-            COUNT = 1
-            WIDTH = 0
-            DESC = False
+            reset(message, username)
         else:
             reset()
     else:
@@ -120,12 +116,16 @@ def process(message, username):
     return
 
 
-def reset():
-    global MSG, USER, COUNT, WIDTH, DESC
-    MSG = ""
-    USER = ""
-    COUNT = 0
+def reset(message="", username=""):
+    global MSG, USER, COUNT, WIDTH, DESC, MAXIMUM
+    if message != "":
+        COUNT = 1
+    else:
+        COUNT = 0
+    MSG = message
+    USER = username
     WIDTH = 0
+    MAXIMUM = 0
     DESC = False
     return
 
