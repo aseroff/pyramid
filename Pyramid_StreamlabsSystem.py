@@ -57,61 +57,76 @@ def Init():
 
 def Execute(data):
     global MSG, USER, COUNT, WIDTH, MAXIMUM, DESC, SETTINGS
-    if ((SETTINGS["liveOnly"] and Parent.IsLive()) or (not SETTINGS["liveOnly"])) and data.IsChatMessage():
-        if WIDTH > 0:
-            if ((data.UserName == USER) or SETTINGS["multiUser"]):
-                set_count(data.Message, data.UserName)
-                if (DESC == False) and (COUNT == (WIDTH + 1)):
-                    WIDTH = COUNT
-                    MAXIMUM = WIDTH
-                elif COUNT == (WIDTH - 1):
-                    WIDTH -= 1
-                    DESC = True
-                    if WIDTH == 1:
-                        if MAXIMUM > 2:
-                            Parent.SendStreamMessage(complete_message(MAXIMUM).replace("$user", USER).replace("$emote", MSG))
-                            Parent.AddPoints(data.User, data.UserName, complete_reward(MAXIMUM))
-                        reset()
-                elif WIDTH >= 2 or DESC:
-                    if data.UserName == USER:
-                        Parent.SendStreamMessage(SETTINGS["responseChoked"].replace("$user", data.UserName))
-                    else:
-                        Parent.SendStreamMessage(SETTINGS["responseBlocked"].replace("$user", data.UserName))
+    if should_process(data):
+        process(data.Message, data.UserName)
+        if should_count(data):
+            if (COUNT == (WIDTH + 1)) and not DESC:
+                WIDTH = COUNT
+                MAXIMUM = WIDTH
+            elif COUNT == (WIDTH - 1):
+                WIDTH -= 1
+                DESC = True
+                if WIDTH == 1:
+                    if MAXIMUM > 2:
+                        Parent.SendStreamMessage(complete_message(MAXIMUM).replace("$user", data.UserName).replace("$emote", MSG))
+                        Parent.AddPoints(data.User, data.UserName, complete_reward(MAXIMUM))
                     reset()
-            elif (WIDTH > 1 or ((WIDTH == 1) and DESC)):
-                Parent.SendStreamMessage(SETTINGS["responseBlocked"].replace("$user", data.UserName))
-                reset()
+            else:
+                pyramid_destroyed(data.UserName)
         else:
-            reset(data.Message, data.UserName)
+            pyramid_destroyed(data.UserName)
     return
 
 
-def set_count(message, username):
-    global MSG, COUNT
-    split = message.strip().split(" ")
-    if (len(list(set(split))) == 1) and (split[0] == MSG) and (split[0] != ""):
-        COUNT = len(split)
-    else:
-        reset(message, username)
+def pyramid_destroyed(username):
+    global USER
+    if WIDTH > 2 or DESC:
+        if (username == USER):
+            if SETTINGS["responseChoked"] != "":
+                Parent.SendStreamMessage(SETTINGS["responseChoked"].replace("$user", username))
+        else:
+            if SETTINGS["responseBlocked"] != "":
+                Parent.SendStreamMessage(SETTINGS["responseBlocked"].replace("$user", username))
+    reset()
     return
 
 
-def reset(message="", username=""):
+def should_process(data):
+    global SETTINGS
+    return ((SETTINGS["liveOnly"] and Parent.IsLive()) or (not SETTINGS["liveOnly"])) and data.IsChatMessage()
+
+
+def should_count(data):
+    global SETTINGS, USER
+    return (data.UserName == USER) or SETTINGS["multiUser"]
+
+
+def process(message, username):
     global MSG, USER, COUNT, WIDTH, DESC
-    if message != "":
-        split = message.strip().split(" ")
-        if len(split) == 1:
-            MSG = split[0]
+    split = message.strip().split(" ")
+    if len(list(set(split))) == 1:
+        if split[0] == MSG:
+            COUNT = len(split)
+        elif len(split) == 1:
+            MSG = message
             USER = username
             COUNT = 1
             WIDTH = 1
             DESC = False
+        else:
+            reset()
     else:
-        MSG = ""
-        USER = ""
-        COUNT = 0
-        WIDTH = 0
-        DESC = False
+        reset()
+    return
+
+
+def reset():
+    global MSG, USER, COUNT, WIDTH, DESC
+    MSG = ""
+    USER = ""
+    COUNT = 0
+    WIDTH = 0
+    DESC = False
     return
 
 
@@ -119,7 +134,7 @@ def complete_message(pyramid_width):
     global SETTINGS
     message = ""
     if pyramid_width >= 3:
-        switcher = {
+        messages = {
             3: SETTINGS["responseThreeWide"],
             4: SETTINGS["responseFourWide"],
             5: SETTINGS["responseFiveWide"],
@@ -128,7 +143,7 @@ def complete_message(pyramid_width):
             8: SETTINGS["responseEightWide"],
             9: SETTINGS["responseNineWide"]
         }
-        message = switcher.get(pyramid_width) or SETTINGS["responseTenPlusWide"]
+        message = messages[pyramid_width] or SETTINGS["responseTenPlusWide"]
     return message
 
 
@@ -136,7 +151,7 @@ def complete_reward(pyramid_width):
     global SETTINGS
     value = 0
     if pyramid_width >= 3:
-        switcher = {
+        rewards = {
             3: SETTINGS["rewardThreeWide"],
             4: SETTINGS["rewardFourWide"],
             5: SETTINGS["rewardFiveWide"],
@@ -145,7 +160,7 @@ def complete_reward(pyramid_width):
             8: SETTINGS["rewardEightWide"],
             9: SETTINGS["rewardNineWide"]
         }
-        value = switcher.get(pyramid_width) or SETTINGS["rewardTenPlusWide"]
+        value = rewards[pyramid_width] or SETTINGS["rewardTenPlusWide"]
     return value
 
 
