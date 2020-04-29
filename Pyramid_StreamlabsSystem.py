@@ -56,26 +56,12 @@ def Init():
 
 
 def Execute(data):
-    global MSG, USER, COUNT, WIDTH, MAXIMUM, DESC, SETTINGS
     if should_process(data):
         process(data.Message, data.UserName)
         if should_count(data):
-            if (COUNT == (WIDTH + 1)) and not DESC:
-                WIDTH = COUNT
-                MAXIMUM = WIDTH
-            elif COUNT == (WIDTH - 1):
-                WIDTH -= 1
-                DESC = True
-                if WIDTH == 1:
-                    if MAXIMUM > 2:
-                        Parent.SendStreamMessage(complete_message(MAXIMUM).replace("$user", data.UserName).replace("$emote", MSG))
-                        Parent.AddPoints(data.User, data.UserName, complete_reward(MAXIMUM))
-                    reset()
-            else:
-                pyramid_destroyed(data.UserName)
+            count(data)
         else:
             pyramid_destroyed(data.UserName)
-    return
 
 
 def pyramid_destroyed(username):
@@ -88,7 +74,6 @@ def pyramid_destroyed(username):
             if SETTINGS["responseBlocked"] != "":
                 Parent.SendStreamMessage(SETTINGS["responseBlocked"].replace("$user", username))
     reset()
-    return
 
 
 def should_process(data):
@@ -113,7 +98,22 @@ def process(message, username):
             reset()
     else:
         reset()
-    return
+
+def count(data):
+    global MSG, COUNT, WIDTH, MAXIMUM, DESC
+    if (COUNT == (WIDTH + 1)) and not DESC:
+        WIDTH = COUNT
+        MAXIMUM = WIDTH
+    elif COUNT == (WIDTH - 1):
+        WIDTH -= 1
+        DESC = True
+        if WIDTH == 1:
+            if MAXIMUM > 2:
+                Parent.SendStreamMessage(complete_message(MAXIMUM).replace("$user", data.UserName).replace("$emote", MSG))
+                Parent.AddPoints(data.User, data.UserName, complete_reward(MAXIMUM))
+            reset()
+    else:
+        pyramid_destroyed(data.UserName)
 
 
 def reset(message="", username=""):
@@ -127,7 +127,6 @@ def reset(message="", username=""):
     WIDTH = 0
     MAXIMUM = 0
     DESC = False
-    return
 
 
 def complete_message(pyramid_width):
