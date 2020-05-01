@@ -2,7 +2,7 @@
 
 Streamlabs Chatbot script to congratulate users on completion of emote pyramids.
 
-Contribute to the script at https://github.com/aseroff/pyramid/
+Report bugs and request features at https://github.com/aseroff/pyramid/
 
 v 1.2: Custom message for when a pyramid gets interrupted. Custom message for when someone screws up their own pyramid. Setting to allow pyramid completion by any user (not just the user who started it).
 
